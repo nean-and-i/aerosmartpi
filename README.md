@@ -15,8 +15,8 @@ Raspberry Pi based monitoring solution for Aerosmart devices of Drexel und Weiss
 
 - full monitoring via munin
 - fhem integration (backwardcompatibility to legacy bussystem eg. KNX, Onewire, etc.)
-- sync to cloud, acces from averywhere
-- alarming via mail, triggered by any parameter
+- sync to cloud, access from everywhere
+- alarming via mail, triggered by any parameter available in munin
 - remote access for support via openvpn
 - Smartplug integration to control Infrared panels over WIFI
 	- TP-LINK HS100,HS110, HS200
