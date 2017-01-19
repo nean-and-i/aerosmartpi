@@ -1,4 +1,5 @@
-(puplishing: incomplete/work-in-progress !)
+(publishing incomplete/work-in-progress !)
+
 # aerosmartpi
 Raspberry Pi based monitoring solution for Aerosmart devices of Drexel und Weiss
 
