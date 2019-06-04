@@ -3,6 +3,14 @@
 # aerosmartpi
 Raspberry Pi based monitoring solution for Aerosmart devices of Drexel und Weiss
 
+## Architecture
+
+D&W mainboard / USB connector is actually a serial interface which can be used to readout and control the entire unit
+The protocol and registers are the same as documented for the modbus (900.6666_00_TI_Modbus_Parameter_DE.pdf))
+
+### USB serial connector
+![](aerosmartpi-install02.jpg)
+
 
 ## Features
 
