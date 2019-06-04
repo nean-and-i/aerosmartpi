@@ -1,0 +1,40 @@
+#!/bin/sh
+
+FILE=/var/lib/munin-node/plugin-state/dw.state
+IFS=:
+
+if [ "$#" -eq "1" ] && [ "$1" = "config" ]; then
+cat <<'EOF'
+graph_title Temperatur
+graph_category Aerosmart
+graph_vlabel Temperatur
+graph_args --base 1000 --units-exponent 0
+graph_scale no
+graph_order raumsolltemp innentemp aussentemp beschattungtemp
+aussentemp.label Temperatur Aussen
+aussentemp.draw LINE2
+aussentemp.colour ac8359 
+innentemp.label Temperatur Innen
+innentemp.draw LINE3
+innentemp.colour 0066cc 
+innentemp.warning 18:28
+innentemp.critical 16:30
+beschattungtemp.label Aktivierung Beschattung
+beschattungtemp.draw LINE1
+beschattungtemp.colour 404040 
+raumsolltemp.label Soll Raumtemperatur
+raumsolltemp.draw AREA 
+raumsolltemp.colour ffa500 
+EOF
+# HRULE -> green line at 5 with legend limit
+#pending.line 5:00ff00:Limit
+else
+    if [ -f $FILE ] && [ -r $FILE ]; then
+        grep temp /var/lib/munin-node/plugin-state/dw.state | grep -v boiler
+        unset IFS
+    else
+        echo "File not found!"
+        exit 1
+    fi
+fi
+

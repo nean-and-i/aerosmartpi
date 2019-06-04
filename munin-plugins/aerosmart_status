@@ -1,0 +1,55 @@
+#!/bin/sh
+
+FILE=/var/lib/munin-node/plugin-state/dw.state
+FILE2=/var/lib/munin-node/plugin-state/ir.state
+IFS=:
+
+if [ "$#" -eq "1" ] && [ "$1" = "config" ]; then
+cat <<'EOF'
+graph_title Status
+graph_category Aerosmart
+graph_vlabel Status
+graph_args --base 1000 --lower-limit 0 --units-exponent 0
+graph_scale no
+graph_order luefterstatus waermepumpestatus beschattunganfoderungstatus boilerheizstabanforderungstatus heizstufe1anforderungstatus heizstufe2anforderungstatus
+luefterstatus.label Luefterstufe
+luefterstatus.draw AREA
+luefterstatus.colour 0066cc
+luefterstatus.min 0
+waermepumpestatus.label Waermepumpe
+waermepumpestatus.draw AREA
+waermepumpestatus.colour 45b46a
+waermepumpestatus.min 0
+boilerheizstabanforderungstatus.label Boilerheizstab
+boilerheizstabanforderungstatus.draw AREA
+boilerheizstabanforderungstatus.colour 6a305b
+boilerheizstabanforderungstatus.min 0
+heizstufe1anforderungstatus.label Heizstufe1
+heizstufe1anforderungstatus.draw LINE3
+heizstufe1anforderungstatus.colour ff7519
+heizstufe1anforderungstatus.min 0
+heizstufe2anforderungstatus.label Heizstufe2-PTC
+heizstufe2anforderungstatus.draw AREA
+heizstufe2anforderungstatus.colour c53030
+heizstufe2anforderungstatus.min 0
+irheizungstatus.label Infrarotheizung
+irheizungstatus.draw LINE3
+irheizungstatus.colour ffff00
+irheizungstatus.min 0
+beschattunganfoderungstatus.label Beschattung
+beschattunganfoderungstatus.draw LINE4
+beschattunganfoderungstatus.colour 404040
+beschattunganfoderungstatus.min 0
+EOF
+else
+    if [ -f $FILE ] && [ -r $FILE ]; then
+        grep -E 'status' /var/lib/munin-node/plugin-state/dw.state
+    	if [ -f $FILE2 ] && [ -r $FILE2 ]; then
+        	grep -E 'status' /var/lib/munin-node/plugin-state/ir.state
+        fi
+        unset IFS
+    else
+        echo "File not found!"
+        exit 1
+    fi
+fi

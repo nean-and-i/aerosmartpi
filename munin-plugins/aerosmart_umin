@@ -1,0 +1,34 @@
+#!/bin/sh
+
+FILE=/var/lib/munin-node/plugin-state/dw.state
+IFS=:
+
+if [ "$#" -eq "1" ] && [ "$1" = "config" ]; then
+cat <<'EOF'
+graph_title Drehzahl Zuluft Abluft
+graph_category Aerosmart
+graph_vlabel u_min
+graph_args --base 1000 --units-exponent 0
+graph_scale no
+graph_order zuluftumin abluftumin
+abluftumin.label Luefter Abluft 
+abluftumin.draw LINE2
+abluftumin.colour ac8359
+abluftumin.warning :2200
+abluftumin.critical :2400
+zuluftumin.label Luefter Zuluft
+zuluftumin.draw LINE3
+zuluftumin.colour 0066cc
+zuluftumin.warning :2300
+zuluftumin.critical :2600
+EOF
+else
+    if [ -f $FILE ] && [ -r $FILE ]; then
+        grep umin /var/lib/munin-node/plugin-state/dw.state
+        unset IFS
+    else
+        echo "File not found!"
+        exit 1
+    fi
+fi
+

@@ -1,0 +1,47 @@
+#!/usr/bin/python
+
+__author__ = 'nean.and.i@gmail.com'
+__version__ = 0.2015122701
+
+import sys
+import re
+
+if len(sys.argv) > 1:
+    input = sys.argv[1]
+
+if input == "config":
+    print "graph_title CO2 Abluft\n" \
+    "graph_category Aerosmart\n" \
+    "graph_vlabel ppm\n" \
+    "graph_args --base 1000 --units-exponent 0\n" \
+    "graph_scale no\n" \
+    "graph_order co2luefterstufe4 co2luefterstufe3 co2luefterstufe2 co2luefterstufe1 co2luefterstufe0 co2\n" \
+    "co2.label CO2 Abluft\n" \
+    "co2.draw LINE2\n" \
+    "co2.colour 0066cc\n" \
+    "co2.warning 1400\n" \
+    "co2.critical 2400\n" \
+    "co2luefterstufe0.label CO2-Zielwert 0 Luefterstufe 0\n" \
+    "co2luefterstufe0.draw AREA\n" \
+    "co2luefterstufe0.colour f0f0f0\n" \
+    "co2luefterstufe1.label CO2-Zielwert 1 Luefterstufe 0-1\n" \
+    "co2luefterstufe1.draw AREA\n" \
+    "co2luefterstufe1.colour 66cc00\n" \
+    "co2luefterstufe2.label CO2-Zielwert 2 Luefterstufe 1-2\n" \
+    "co2luefterstufe2.draw AREA\n" \
+    "co2luefterstufe2.colour ffff66\n" \
+    "co2luefterstufe3.label CO2-Zielwert 3 Luefterstufe 2-3\n" \
+    "co2luefterstufe3.draw AREA\n" \
+    "co2luefterstufe3.colour ffb266\n" \
+    "co2luefterstufe4.label CO2-Zielwert 3+120% Luefterstufe 3\n" \
+    "co2luefterstufe4.draw AREA\n" \
+    "co2luefterstufe4.colour ff6666"
+    sys.exit(0)
+
+
+
+with open('/var/lib/munin-node/plugin-state/dw.state', 'r') as state:
+    for line in state:
+        if re.match("co2", line, re.I):
+            print line,
+
