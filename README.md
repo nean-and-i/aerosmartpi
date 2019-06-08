@@ -82,6 +82,7 @@ fhem:dummy -> define Luefterstufe_3 notify Luefterstufe:3 {system('ssh pi@<aeros
 
 ## Links
 https://github.com/diresi/drexel-und-weiss
+
 https://github.com/Bernator/smarthome/tree/develop/plugins/drexelundweiss
 
 
