@@ -1,9 +1,15 @@
-(publishing incomplete/work-in-progress !)
+# this repo is ARCHIVED
 
-please consult the wiki for details regarding setup !
+please refer to the new version **aerosmart-gateway** - a Go-based gateway application that communicates with Drexel&Weiss Aerosmart M ventilation/heatpump devices via USB serial and integrates with Home Assistant via MQTT.
+
+https://github.com/nean-and-i/aerosmart-gateway
+
 
 # aerosmartpi
 Raspberry Pi based monitoring solution for Aerosmart devices of Drexel und Weiss
+(publishing incomplete/work-in-progress !)
+
+please consult the wiki for details regarding setup !
 
 ## Architecture
 
